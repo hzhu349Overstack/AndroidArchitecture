@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">AndroidArchitecture</string>
+    <string name="mvc">mvc</string>
+    <string name="mvp">mvp</string>
+    <string name="mvvm">mvvm</string>
+    <string name="mvi">mvi</string>
+    <string name="user_account">user account</string>
+    <string name="user_password">user password</string>
+    <string name="login">login</string>
 </resources>
