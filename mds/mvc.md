@@ -1,6 +1,6 @@
 # mvc
 
-![](https://gitee.com/sunnnydaydev/my-pictures/raw/master/architecture/mvc.png)
+![](https://gitee.com/sunnnydaydev/my-pictures/raw/master/architecture/mvc_new.png)
 
 ###### 1、介绍
 
