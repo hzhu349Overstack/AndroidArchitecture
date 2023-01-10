@@ -4,7 +4,7 @@
 
     <application>
         <activity
-            android:name=".MvpLoginActivity"
+            android:name=".view.MvpLoginActivity"
             android:exported="false" />
     </application>
 
