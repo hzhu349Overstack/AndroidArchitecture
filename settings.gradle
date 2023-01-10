@@ -16,3 +16,4 @@ rootProject.name = "AndroidArchitecture"
 include ':app'
 include ':mvp'
 include ':mvvm'
+include ':mvi'
