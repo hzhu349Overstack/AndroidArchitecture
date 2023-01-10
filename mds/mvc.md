@@ -72,9 +72,9 @@ class LoginActivity : AppCompatActivity() {
         //负责view的展示（充当了View的功能）
         setContentView(R.layout.activity_login)
         //负责业务逻辑的处理（充当了controller的功能）
-        val user = User() // 充当controller与model进行交互
-        login.setOnClickListener { // 充当controller与view进行交互
-            val account = userAccount.text.toString()
+        val user = User() // 充当controller，依赖model与model进行交互
+        login.setOnClickListener { // 充当controller，依赖view与view进行交互，view本身还依赖controller（依赖其context）
+            val account = userAccount.text.toString()//充当view时，持有model，直接依赖model。
             val password = userPassWord.text.toString()
             if (account == user.account && password == user.password){
                 Toast.makeText(applicationContext,"login success!",Toast.LENGTH_LONG).show()
@@ -88,12 +88,13 @@ class LoginActivity : AppCompatActivity() {
 
 ###### 3、总结
 
-由于activity中xml布局功能被设计的太弱，activity实际是充当了view与controller两层的职责，所以android中的mvc更像下面的那种形式。
+由于activity中xml布局功能被设计的太弱，activity实际是充当了view与controller两层的职责，所以android中的mvc更像上图中下面的那种形式。
+
 
 总结下mvc模式在android上的弊端：
 
-- Activity同时负责View与Controller层的工作，职责过重。
-- Model层与View层存在耦合，存在互相依赖。
+- xml的职责太弱了，Activity同时负责View与Controller层的工作职责过重。
+- Model层与View层存在耦合，存在直接依赖关系。
 
 
 
