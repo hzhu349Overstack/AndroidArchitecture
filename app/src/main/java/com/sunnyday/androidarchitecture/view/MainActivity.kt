@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.sunnyday.androidarchitecture.R
+import com.sunnyday.mvi.MviLoginActivity
 import com.sunnyday.mvp.view.MvpLoginActivity
 import com.sunnyday.mvvm.ui.MvvmLoginActivity
 import kotlinx.android.synthetic.main.activity_main.*
@@ -23,7 +24,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this, MvvmLoginActivity::class.java))
         }
         mvi.setOnClickListener {
-
+             startActivity(Intent(this,MviLoginActivity::class.java))
         }
     }
 }
