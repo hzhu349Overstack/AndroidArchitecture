@@ -191,66 +191,17 @@ MVVM使用数据绑定来实现，Google官方提供了一个Ui框架DataBinding
 
 这里个人理解也不透彻，针对上述，有个想法：若是标准的写法使用DataBinding库是不是应该是这样的？？？ ->
 
-```kotlin
-/**
- * Create by SunnyDay /01/10 16:30:54
- * ViewModel子类，同时实现DataBinding的Observable实现数据可观察。
- */
-class BindingModelTest:ViewModel(), Observable {
+（1）建立个BindingModel类，和普通的model类差不多，只是实现了DataBinding的数据可观察的方法
 
-    // todo 定义卡观察字段，与xml 进行双向绑定
+（2）ViewModel中处理事件，update 数据，然后需要更新UI时把model数据更新即可
 
-    @Transient
-    private var mCallbacks: PropertyChangeRegistry? = null
 
-    override fun addOnPropertyChangedCallback(callback: Observable.OnPropertyChangedCallback?) {
-        synchronized(this) {
-            if (mCallbacks == null) {
-                mCallbacks = PropertyChangeRegistry()
-            }
-        }
-        mCallbacks!!.add(callback)
-    }
-
-    override fun removeOnPropertyChangedCallback(callback: Observable.OnPropertyChangedCallback?) {
-        synchronized(this) {
-            if (mCallbacks == null) {
-                return
-            }
-        }
-        mCallbacks!!.remove(callback)
-    }
-
-    fun notifyChange() {
-        synchronized(this) {
-            if (mCallbacks == null) {
-                return
-            }
-        }
-        mCallbacks!!.notifyCallbacks(this, 0, null)
-    }
-
-    fun notifyPropertyChanged(fieldId: Int) {
-        synchronized(this) {
-            if (mCallbacks == null) {
-                return
-            }
-        }
-        mCallbacks!!.notifyCallbacks(this, fieldId, null)
-    }
-
-    /**
-     * todo login logic
-     * */
-    fun login(){
-
-    }
-}
-```
-
-这样既继承ViewModel又实现数据可观察的方法，把官方提供的DataBinding用起来了,插个眼，，，以后有新感悟了再回来整理~
+可能是经历太少，ViewModel+监听的方式见过几个，我们项目也是这样。这里先插个眼，，，以后有新感悟了再回来整理~
 
 
 MVVM与MVP的主要区别在于:
 
 你不用去主动去刷新UI了，只要Model数据变了，会自动反映到UI上。换句话说，MVVM更像是自动化的MVP
+
+很好理解，DataBinding的数据双向绑定避免了主动发数据触发接口回调，或者说使用DataBinding这些工作我们不必写了。
+
