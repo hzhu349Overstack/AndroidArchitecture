@@ -5,6 +5,8 @@ import com.sunnyday.mvi.base.UILoadState
 
 /**
  * Create by SunnyDay /01/11 15:38:24
+ *
+ * 定义契约类，方便管理每个UI对应的ViewModel，对自己的ViewModel进行约束。
  */
 interface MviLoginContract {
 

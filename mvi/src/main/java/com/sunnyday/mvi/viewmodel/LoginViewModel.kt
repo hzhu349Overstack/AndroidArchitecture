@@ -14,7 +14,7 @@ import kotlinx.coroutines.launch
  */
 class LoginViewModel : MviLoginContract.ViewModel() {
 
-    override fun onViewEvent(event: MviLoginContract.ViewEvent) {
+    override fun onEvent(event: MviLoginContract.ViewEvent) {
         when (event) {
             is MviLoginContract.ViewEvent.Login -> {
                 doLogin(event.account,event.password)
@@ -31,7 +31,7 @@ class LoginViewModel : MviLoginContract.ViewModel() {
             if (account=="admin"&&password=="123456"){
                 mCurrentState = mCurrentState.copy(loadState = UILoadState.DATA)
                 // 请求成功，跳转主页
-                dispatchViewAction(BaseViewAction.DisplayScreen(BaseViewAction.Screen.Main))
+                dispatchAction(BaseViewAction.DisplayScreen(BaseViewAction.Screen.Main))
             }else{
                 // 请求网路失败
                 mCurrentState = mCurrentState.copy(loadState = UILoadState.ERROR)

@@ -11,17 +11,25 @@ import kotlinx.coroutines.runBlocking
  * 2、ViewModel中不仅处理UI相关事件，还可能处理其他事件如activity跳转等逻辑，把结果回调，因此再定义个
  */
 abstract class BaseViewModel<VS, VE>(viewState: VS) : ViewModel() {
+    // 两个flow分别用于发送ViewState，ViewAction事件。然后UI层监听数据的变化。
     val stateFlow = MutableStateFlow(viewState)
     val actionFlow = MutableSharedFlow<BaseViewAction>()
+
     var mCurrentState = viewState
         set(value) {
             field = value
             stateFlow.value = value
         }
 
-    abstract fun onViewEvent(event: VE)
+    /**
+     * 事件处理，处理UI层发送过来的事件。
+     * */
+    abstract fun onEvent(event: VE)
 
-    protected fun dispatchViewAction(action: BaseViewAction) =
+    /**
+     * 像UI层发送action数据
+     * */
+    protected fun dispatchAction(action: BaseViewAction) =
         runBlocking {
             actionFlow.emit(action)
         }
